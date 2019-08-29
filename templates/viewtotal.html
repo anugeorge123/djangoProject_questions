@@ -1,0 +1,378 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>View Questions</title>
+	<style type="text/css">
+
+	form{
+	width:300px;
+	}
+	.form-field{
+	width:100%;
+	}
+	input
+	{
+	margin-bottom:20px;
+	}
+
+	h2{
+	color: blue;
+	text-align: center;
+	font-weight: bold;
+	}
+	p{
+	font-family: verdana;
+	font-size: 25px;
+	
+	color: black;
+	}
+
+
+
+
+textarea.txt{
+    width               : 500%;
+    height              : 100px;
+    resize              : none;
+    border              : solid 1px rgba(0, 0, 0, 0);
+    padding             : 10px;
+    white-space         : nowrap;
+}
+
+
+	
+
+	</style>
+  </head>
+  <body class="tdStyle">
+	<center><h2>Added Questions</h2></center>
+	<div class="container" style="padding-top:110px">
+	<form method="POST" id="formid" >
+		{% csrf_token %}
+		<p>
+<input type="submit" name="btn_view" id="btn_view" value="View" style="background-color:rgb(60, 179, 70)" ><br>	
+<input type="submit" name="btn_exit" id="btn_exit" value="Sign out" style="background-color:rgb(60, 179, 70)" ><br>
+		 <textarea id="textarea1" rows="2" cols="70" class="txt"></textarea> <br>
+ 	
+		<label id="opt1.1">		
+		<input type="radio" name="option1" value="option1" id="option1.1" disabled>
+		 </label><br>
+
+		<label id="opt1.2">
+		<input type="radio" name="option1" value="option2" id="option1.2" disabled>
+		</label><br>
+
+		<label id="opt1.3">
+  		<input type="radio" name="option1" value="option3" id="option1.3" disabled>
+		</label><br>
+
+		<label id="opt1.4">
+		<input type="radio" name="option1" value="option4" id="option1.4" disabled>
+		</label><br>
+	
+
+		<textarea id="textarea2" rows="2" cols="70" class="txt"></textarea><br>
+
+		<label id="opt2.1">
+		<input type="radio" name="option2" value="option1" id="option2.1" disabled> 
+		</label><br>		
+
+		<label id="opt2.2">
+ 		 <input type="radio" name="option2" value="option2" id="option2.2" disabled> 
+		</label><br>
+		
+		<label id="opt2.3">
+  		<input type="radio" name="option2" value="option3" id="option2.3" disabled>
+		</label> <br>
+
+		<label id="opt2.4">
+		<input type="radio" name="option2" value="option4" id="option2.4" disabled> 	
+		</label><br>	
+
+		
+		<textarea id="textarea3" rows="2" cols="70" class="txt"></textarea><br>
+
+		<label id="opt3.1">
+		<input type="radio" name="option3" value="option1" id="option3.1" disabled> 
+		</label><br>
+		
+		<label id="opt3.2">
+ 		 <input type="radio" name="option3" value="option2" id="option3.2" disabled> 
+		</label><br>
+
+		<label id="opt3.3">
+  		<input type="radio" name="option3" value="option3" id="option3.3" disabled> 
+		</label><br>
+
+		<label id="opt3.4">
+		<input type="radio" name="option3" value="option4" id="option3.4" disabled> 
+		</label><br>	
+
+		<textarea id="textarea4" rows="2" cols="70" class="txt"></textarea><br>
+
+		<label id="opt4.1">
+		<input type="radio" name="option4" value="option1" id="option4.1" disabled>
+		</label><br>
+
+		<label id="opt4.2"> 		
+		 <input type="radio" name="option4" value="option2" id="option4.2" disabled>
+		</label><br>
+
+
+		<label id="opt4.3"> 
+  		<input type="radio" name="option4" value="option3" id="option4.3" disabled>
+		</label><br>
+			
+		<label id="opt4.4"> 
+		<input type="radio" name="option4" value="option4" id="option4.4" disabled> 
+		</label><br>
+
+
+
+		<textarea id="textarea5" rows="2" cols="70" class="txt"></textarea><br>
+
+		<label id="opt5.1"> 
+		<input type="radio" name="option5" value="option1" id="option5.1" disabled> 
+		</label><br>
+
+		<label id="opt5.2"> 
+ 		 <input type="radio" name="option5" value="option2" id="option5.2" disabled>
+		</label><br>
+ 
+
+		<label id="opt5.3"> 
+  		<input type="radio" name="option5" value="option3" id="option5.3" disabled> 
+		</label><br>
+		
+		<label id="opt5.4"> 
+		<input type="radio" name="option5" value="option4" id="option5.4" disabled> 
+		</label><br>
+	
+
+		<textarea id="textarea6" rows="2" cols="70" class="txt"></textarea><br>
+
+		<label id="opt6.1">
+		<input type="radio" name="option6" value="option1" id="option6.1" disabled> 
+		</label><br>
+
+
+		<label id="opt6.2">
+ 		 <input type="radio" name="option6" value="option2" id="option6.2" disabled> 
+		</label><br>
+		
+		<label id="opt6.3">
+  		<input type="radio" name="option6" value="option3" id="option6.3" disabled>
+		</label><br> 
+
+		<label id="opt6.4">
+		<input type="radio" name="option6" value="option4" id="option6.4" disabled> 	
+		</label><br> 
+
+		
+		<textarea id="textarea7" rows="2" cols="70" class="txt"></textarea><br>
+
+ 		<label id="opt7.1">
+		<input type="radio" name="option7" value="option1" id="option7.1" disabled>  
+		</label><br>
+		
+		<label id="opt7.2">
+		 <input type="radio" name="option7" value="option2" id="option7.2" disabled>
+		</label><br>
+
+ 		<label id="opt7.3">
+  		<input type="radio" name="option7" value="option3" id="option7.3" disabled>
+		</label><br>
+
+		<label id="opt7.4"> 		
+		<input type="radio" name="option7" value="option4" id="option7.4" disabled> 	
+		</label><br>
+
+
+		<textarea id="textarea8" rows="2" cols="70" class="txt"></textarea><br>
+
+		<label id="opt8.1">
+		<input type="radio" name="option8" value="option1" id="option8.1" disabled>
+		</label><br>
+
+		<label id="opt8.2">
+ 		 <input type="radio" name="option8" value="option2" id="option8.2" disabled> 
+		</label><br>
+
+		<label id="opt8.3">
+  		<input type="radio" name="option8" value="option3" id="option8.3" disabled> 
+		</label><br>
+
+		<label id="opt8.4">
+		<input type="radio" name="option8" value="option4" id="option8.4" disabled> 
+		</label><br>
+
+
+
+		<textarea id="textarea9" rows="2" cols="70" class="txt"></textarea><br>
+
+		<label id="opt9.1">
+		<input type="radio" name="option9" value="option1" id="option9.1" disabled> 
+		</label><br>
+
+		<label id="opt9.2">
+ 		 <input type="radio" name="option9" value="option2" id="option9.2" disabled> 
+		</label><br>
+
+		<label id="opt9.3">
+  		<input type="radio" name="option9" value="option3" id="option9.3" disabled> 
+		</label><br>
+
+		<label id="opt9.4">
+		<input type="radio" name="option9" value="option4" id="option9.4" disabled>
+		</label><br>
+
+
+		<textarea id="textarea10" rows="2" cols="70" class="txt"></textarea><br>
+
+		<label id="opt10.1">
+		<input type="radio" name="option10" value="option1" id="option10.1" disabled> 
+		</label><br>
+
+		<label id="opt10.2">
+ 		 <input type="radio" name="option10" value="option2" id="option10.2" disabled> 
+		</label><br>
+
+		<label id="opt10.3">
+  		<input type="radio" name="option10" value="option3" id="option10.3" disabled>
+		</label><br>
+
+		<label id="opt10.4">
+		<input type="radio" name="option10" value="option4" id="option10.4" disabled> 
+		</label><br>
+
+			
+</p>
+	</form>
+	<!-- <textarea id="textarea" rows="10" cols="35"></textarea> -->
+	</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+ crossorigin="anonymous"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+
+$.ajaxSetup({
+     beforeSend: function(xhr, settings) {
+         function getCookie(name) {
+             var cookieValue = null;
+             if (document.cookie && document.cookie != '') {
+                 var cookies = document.cookie.split(';');
+                 for (var i = 0; i < cookies.length; i++) {
+                     var cookie = jQuery.trim(cookies[i]);
+                     // Does this cookie string begin with the name we want?
+                     if (cookie.substring(0, name.length + 1) == (name +'=')) {
+                         cookieValue =decodeURIComponent(cookie.substring(name.length + 1));
+                         break;
+                     }
+                 }
+             }
+             return cookieValue;
+         }
+         if (!(/^http:.*/.test(settings.url) ||
+/^https:.*/.test(settings.url))) {
+             // Only send the token to relative URLs i.e. locally.
+             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+         }
+     }
+});
+
+$("#btn_view").click(function(e){
+
+
+e.preventDefault();
+
+for(i=1; i <=4; i++) 
+{			
+for(j=1;j<=10;j++){
+
+			
+document.getElementById("opt"+j+"."+i).innerHTML = "<input type=\"radio\" name=\"option"+j+"\" value=\"option"+i+"\" id=\"option"+j+"."+i+"\">";
+
+}
+
+
+}
+$.ajax({
+	url:"view/",
+	type:"post",
+	datatype:"json",
+	data:$("#formid").serialize(),
+	
+	success:function(data)
+	{
+		if(data.status)
+		{
+			$("#textarea1").val("1. "+data.val[0]);
+			$("#textarea2").val("2. "+data.val[1]);
+			$("#textarea3").val("3. "+data.val[2]);
+			$("#textarea4").val("4. "+data.val[3]);
+			$("#textarea5").val("5. "+data.val[4]);
+			$("#textarea6").val("6. "+data.val[5]);
+			$("#textarea7").val("7. "+data.val[6]);
+			$("#textarea8").val("8. "+data.val[7]);
+			$("#textarea9").val("9. "+data.val[8]);
+			$("#textarea10").val("10. "+data.val[9]);
+				
+			str="opt"
+			for(i=1; i <=10; i++) 
+			{			
+				document.getElementById(str+i+".1").append(data.val1[i-1].opt1);
+				document.getElementById(str+i+".2").append(data.val1[i-1].opt2);
+				document.getElementById(str+i+".3").append(data.val1[i-1].opt3);
+				document.getElementById(str+i+".4").append(data.val1[i-1].opt4);
+		
+			}	
+		
+		}
+		else
+		{
+			alert("Failed to receive");
+		}
+	},
+	error:function()
+	{
+	alert("Connection Failed");
+	}
+	});
+});
+
+
+
+
+
+$("#btn_submit").click(function(e){
+e.preventDefault();
+//$("#radio_1").prop("checked", true);
+window.location.replace("check/");
+
+});
+
+
+$("#btn_exit").click(function(e){
+e.preventDefault();
+window.location.replace("../../../Home");
+});
+	
+</script>
+  </body>
+</html>

@@ -1,0 +1,206 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Edit questions</title>
+	<style type="text/css">
+	form{
+		width:300px;
+	}
+	.form-field{
+		width:100%;
+	}
+	input{
+		margin-bottom:20px;
+	}
+
+	
+
+	h2{
+ 		color: blue;
+ 		text-align: center;
+	}
+
+	p{
+ 		font-family: verdana;
+		font-size:25px;
+		color: blue;
+	}
+.tdStyle{
+		background-image:url("/static/images/img2.jpg") ;
+		background-repeat:no-repeat;
+		color: white;
+		height: 650px;
+		
+	}
+
+
+	</style>
+  </head>
+  <body	class="tdStyle">
+	<center><h2>Edit Questions</h2></center>
+	<div class="container" style="padding-top:30px">
+	<form method="POST" id="formid2">
+		{% csrf_token %}
+	<p>
+		
+		Question Number<input type="text" id="txt_qno" name="txt_qno" class="form-field"> <br>
+		<input type="submit" id="btn_search" value="Search" style="background-color:rgb(60, 179, 70)"><br>
+		
+		Question<input type="text" id="txt_qstn" name="txt_qstn" rows="60" cols="40"> <br>
+		Option1<input type="text" id="txt_opt1" name="txt_opt1" class="form-field"> <br>
+		Option2<input type="text" id="txt_opt2" name="txt_opt2" class="form-field"> <br>
+		Option3<input type="text" id="txt_opt3" name="txt_opt3" class="form-field"> <br>
+		Option4<input type="text" id="txt_opt4" name="txt_opt4" class="form-field"> <br>
+		Answer<input type="text" id="txt_ans" name="txt_ans" class="form-field"> <br>
+			
+		<input type="submit" id="btn_update" value="Update" style="background-color:rgb(60, 179, 70)">
+		<input type="submit" id="btn_back" value="Home" style="background-color:rgb(60, 179, 70)">
+	</p>
+	</form>
+	
+	</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  
+<!--  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+-->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+ crossorigin="anonymous"></script>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript">
+
+
+$.ajaxSetup({
+     beforeSend: function(xhr, settings) {
+         function getCookie(name) {
+             var cookieValue = null;
+             if (document.cookie && document.cookie != '') {
+                 var cookies = document.cookie.split(';');
+                 for (var i = 0; i < cookies.length; i++) {
+                     var cookie = jQuery.trim(cookies[i]);
+                     // Does this cookie string begin with the name we want?
+                     if (cookie.substring(0, name.length + 1) == (name +'=')) {
+                         cookieValue =decodeURIComponent(cookie.substring(name.length + 1));
+                         break;
+                     }
+                 }
+             }
+             return cookieValue;
+         }
+         if (!(/^http:.*/.test(settings.url) ||
+/^https:.*/.test(settings.url))) {
+             // Only send the token to relative URLs i.e. locally.
+             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+         }
+     }
+});
+
+
+$("#btn_search").click(function(e){
+e.preventDefault();
+$.ajax({
+	url:"search/",
+	type:"post",
+	datatype:"json",
+	data:$("#formid2").serialize(),
+	
+	success:function(data)
+	{
+		//$('#txt_cname').val("");		
+		if(data.status)
+		{
+			
+			$("#txt_qstn").val(data.val1);
+			$("#txt_opt1").val(data.val2);
+			$("#txt_opt2").val(data.val3);
+			$("#txt_opt3").val(data.val4);
+			$("#txt_opt4").val(data.val5);
+			$("#txt_ans").val(data.val6);			
+		}
+		else
+		{
+			alert("Please enter Question number!");
+		}
+	},
+	error:function()
+	{
+		alert("Connection Failed");
+	}
+	});
+});
+
+
+$("#btn_update").click(function(e){
+e.preventDefault();
+$.ajax({
+	url:"editfn/",
+	type:"post",
+	datatype:"json",
+	data:$("#formid2").serialize(),
+	
+	success:function(data)
+	{
+		$("#txt_qstn").val("");
+		$("#txt_opt1").val("");
+		$("#txt_opt2").val("");
+		$("#txt_opt3").val("");
+		$("#txt_opt4").val("");
+		$("#txt_ans").val("");	
+		if(data.status)
+		{
+			if(data.vall)
+			{
+			alert(data.val);
+			}
+			else
+			{
+			alert(" Data Updated Successfully");
+			}	
+			
+		
+		}
+		else
+		{
+			alert("Please Input Some Values!");
+		}
+	},
+	error:function()
+	{
+		alert("Connection Failed");
+	}
+	});
+});
+
+$("#btn_back").click(function(e){
+e.preventDefault();
+window.location.replace("../../../Home/");
+});
+
+
+
+
+
+	
+</script>
+
+
+  </body>
+</html>

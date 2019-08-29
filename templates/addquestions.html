@@ -1,0 +1,239 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Add Questions</title>
+
+	<style type="text/css">
+	form{
+		width:300px;
+	}
+	.form-field{
+		width:100%;
+	}
+	input{
+		margin-bottom:20px;
+	}
+
+	
+
+	h2{
+ 		color: blue;
+ 		text-align: center;
+	}
+
+	p{
+ 		font-family: verdana;
+		font-size:25px;
+		color: blue;
+	}
+	
+
+
+	.split {
+ 	 height: 100%;
+ 	 width: 50%;
+ 	 position: fixed;
+ 	 z-index: 1;
+ 	 top: 0;
+ 	 overflow-x: hidden;
+ 	 padding-top: 20px;
+	}
+	
+	.left {
+  	left: 0;
+  	
+	}
+
+	.right {
+  	right: 0;
+  	
+	}
+
+	.centered {
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	
+	}
+
+.tdStyle{
+		background-image:url("/static/images/img2.jpg") ;
+		background-repeat:no-repeat;
+		color: white;
+		height: 650px;
+		
+	}
+
+
+
+	</style>
+  </head>
+  <body	class="tdStyle">
+
+
+	<h2>Add Questions</h2>
+	<div class="container" style="padding-top:3px"> 
+	
+	<form method="POST" id="formid1" >
+		{% csrf_token %}
+	<p>
+		Question<input type="textarea" id="txt_qstn" name="txt_qstn"  rows="60" cols="30"> <br>
+
+		Option 1<input type="text" id="txt_opt1" name="txt_opt1" class="form-field"> <br>
+		Option 2<input type="text" id="txt_opt2" name="txt_opt2" class="form-field"> <br>
+		Option 3<input type="text" id="txt_opt3" name="txt_opt3" class="form-field"> <br>
+		Option 4<input type="text" id="txt_opt4" name="txt_opt4" class="form-field"> <br>
+				
+		Answer
+		<select name="sel_answer" id="sel_answer">
+		
+		<option value="option1" name="option1">Option 1</option>
+		<option value="option2" name="option2">Option 2</option>
+		<option value="option3" name="option3">Option 3</option>
+		<option value="option4" name="option4">Option 4</option>
+
+				
+		
+		</select>
+
+		<!-- <input type="text" id="txt_ans" name="txt_ans" class="form-field"> <br> -->
+		
+		<input type="submit" id="btn_submit" value="Submit" style="background-color:rgb(60, 179, 70)">
+		<input type="submit" id="btn_edit" value="Edit" style="background-color:rgb(60, 179, 70)">
+		<input type="submit" id="btn_exit" value="Signout" style="background-color:red">
+		 <input type="submit" id="btn_view" value="View" style="background-color:rgb(60, 179, 70)">
+				
+
+	</p>
+	</form>
+	</div>
+	
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+ <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+ crossorigin="anonymous"></script>
+
+
+<!--
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
+-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+
+
+<script type="text/javascript">
+
+
+$.ajaxSetup({
+     beforeSend: function(xhr, settings) {
+         function getCookie(name) {
+             var cookieValue = null;
+             if (document.cookie && document.cookie != '') {
+                 var cookies = document.cookie.split(';');
+                 for (var i = 0; i < cookies.length; i++) {
+                     var cookie = jQuery.trim(cookies[i]);
+                     // Does this cookie string begin with the name we want?
+                     if (cookie.substring(0, name.length + 1) == (name +'=')) {
+                         cookieValue =decodeURIComponent(cookie.substring(name.length + 1));
+                         break;
+                     }
+                 }
+             }
+             return cookieValue;
+         }
+         if (!(/^http:.*/.test(settings.url) ||
+/^https:.*/.test(settings.url))) {
+             // Only send the token to relative URLs i.e. locally.
+             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+         }
+     }
+});
+
+$("#btn_submit").click(function(e){
+//alert("ajax");
+e.preventDefault();
+$.ajax({
+	url:"addfn/",
+	type:"post",
+	datatype:"json",
+	data:$("#formid1").serialize(),
+	
+	success:function(data)
+	{	
+
+		$("#txt_qstn").val("");
+		$("#txt_opt1").val("");
+		$("#txt_opt2").val("");
+		$("#txt_opt3").val("");
+		$("#txt_opt4").val("");
+		$("#txt_ans").val("");	
+
+		if(data.status)
+		{
+			//alert(data.val2)
+			if(data.val1)
+			{
+			alert(data.val1);
+			}
+			if(data.val2)
+			{
+			alert(data.val2);
+			}
+			if(data.val3)
+			{			
+			alert(data.val3);
+			}
+			
+		}
+		else
+		{
+		alert("Please Input Some Values!");
+		//window.location.replace("currentleave");	
+	
+		}
+	},
+	error:function()
+	{
+	alert("Connection Failed");
+	}
+	});
+});
+
+$("#btn_exit").click(function(e){
+e.preventDefault();
+window.location.replace("../../Home/");
+});
+
+
+
+$("#btn_edit").click(function(e){
+e.preventDefault();
+window.location.replace("edit questions/");
+});
+
+	
+
+
+$("#btn_view").click(function(e){
+e.preventDefault();
+window.location.replace("view total/");
+});
+
+	
+</script>
+
+  </body>
+</html>
