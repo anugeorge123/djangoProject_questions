@@ -103,6 +103,9 @@ def viewqstnpage(request):
 def addqstnfn(request):
 	dict3={}
 	try:
+		st=request.POST['setname']
+		print(st)
+		request.session["set_no"]=st
 		qstn=request.POST['txt_qstn']
 		opt1=request.POST['txt_opt1']
 		opt2=request.POST['txt_opt2']
@@ -121,17 +124,31 @@ def addqstnfn(request):
 		for x in obj:
 			q=x.question
 			lis.append(q)
-		
+		y=len(lis)
+		print("length of lis:",len(lis))
 		if(qstn in lis):
 			dict3["val1"]="Question Already Exist"
 			dict3["status"]=True
 		
-		elif(qstn !="" and opt1 !="" and opt2 !="" and opt3 !="" and opt4 !="" and ans !=""):
-			x=Questions(question=qstn,option1=opt1,option2=opt2,option3=opt3,option4=opt4,answer=ans,sid=1)
+		elif(qstn !="" and opt1 !="" and opt2 !="" and opt3 !="" and opt4 !="" and ans !="" and len(lis)<=10 ):
+			x=Questions(question=qstn,option1=opt1,option2=opt2,option3=opt3,option4=opt4,answer=ans,sid=st)
 			x.save()
+			
+			
 			dict3["val3"]="Data saved successfully"
 			dict3["status"]=True
 		
+		elif(qstn !="" and opt1 !="" and opt2 !="" and opt3 !="" and opt4 !="" and ans !="" and len(lis)>10 and len(lis)<=20):
+			x=Questions(question=qstn,option1=opt1,option2=opt2,option3=opt3,option4=opt4,answer=ans,sid=st)
+			x.save()
+			dict3["val3"]="Data saved successfully"
+			dict3["status"]=True
+		elif(qstn !="" and opt1 !="" and opt2 !="" and opt3 !="" and opt4 !="" and ans !="" and len(lis)>20 and len(lis)<=30):
+			x=Questions(question=qstn,option1=opt1,option2=opt2,option3=opt3,option4=opt4,answer=ans,sid=st)
+			x.save()
+			dict3["val3"]="Data saved successfully"
+			dict3["status"]=True
+
 	except Exception as e:
 		print("Error",e)
 		dict3["status"]=False
@@ -140,15 +157,36 @@ def addqstnfn(request):
 	return HttpResponse(jsondata,content_type="application/json")
 
 def viewqstnpage1(request):
-	return render(request,"viewquestions.html",{"msg1":1,})
-
+	try:	
+		if 'btn_submit1' in request.POST:
+			print(request.POST)
+			st=1
+		elif 'btn_submit2' in request.POST:
+			st=2
+			print("st:",st)	
+		elif 'btn_submit3' in request.POST:
+			st=3 
+		print("st:",st)
+		request.session['St']=st
+		return render(request,"viewquestions.html")
+	except Exception as e:
+		print(e)
+		
+	
 
 def viewfn(request):
 	
+	print("inside view function ")
+	#request.POST.get("btn_submit1")
+	#a=request.POST.get("btn_submit1")
+	#print(a)
+	#print(request.POST)
+	
+	st=request.session['St']	
 	dict4={}
 	select=''
 	try:
-		obj = Questions.objects.all()	
+		obj = Questions.objects.filter(sid=st)	
 		lis=[]
 		lis1=[]
 		lis2=[]
@@ -316,15 +354,6 @@ def checkresult(request):
 
 	jsondata=json.dumps(dict5)
 	return HttpResponse(jsondata,content_type="application/json")
-
-
-
-
-
-
-
-
-
 
 
 def viewtotalfn(request):

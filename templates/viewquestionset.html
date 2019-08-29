@@ -53,12 +53,12 @@
 	<form method="POST" id="formid" action="view questions/">
 		{% csrf_token %}
 		<p>		
-		<!--
-		<a href="view questions/">set 1</a> <br>
-		<a href="#">set 2</a><br>
-		<a href="#">set 3</a><br>
--->
-	<input type="submit" name="btn_submit" value="SET 1" style="background-color:rgb(60, 179, 70)"><br>	
+
+	<input type="submit" name="btn_submit1" id="btn_submit1" value="SET 1" style="background-color:rgb(60, 179, 70)"><br>
+
+	
+	<input type="submit" name="btn_submit2"  id="btn_submit2" value="SET 2" style="background-color:rgb(60, 179, 70)"><br>	
+	<!--<input type="submit" name="btn_submit3" id="btn_submit3" value="SET 3" style="background-color:rgb(60, 179, 70)"><br> -->	
 		
 				
 </p>
@@ -134,11 +134,20 @@ $.ajax({
 	}
 	});
 });*/
-$("#btn_submit").click(function(e){
-e.preventDefault();
+/*$("#btn_submit1").click(function(e){
+//e.preventDefault();
 window.location.replace("view questions/");
 });
-	
+
+$("#btn_submit2").click(function(e){
+//e.preventDefault();
+window.location.replace("view questions/");
+});
+
+$("#btn_submit3").click(function(e){
+e.preventDefault();
+window.location.replace("view questions/");
+});*/	
 </script>
   </body>
 </html>

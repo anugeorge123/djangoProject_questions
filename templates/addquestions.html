@@ -86,6 +86,12 @@
 	<form method="POST" id="formid1" >
 		{% csrf_token %}
 	<p>
+
+		Set No<select name="setname" id="setanme">
+		<option name="opt_set1">1</option>
+		<option name="opt_set2">2</option>
+		<option name="opt_set3">3</option>
+		</select><br><br>
 		Question<input type="textarea" id="txt_qstn" name="txt_qstn"  rows="60" cols="30"> <br>
 
 		Option 1<input type="text" id="txt_opt1" name="txt_opt1" class="form-field"> <br>
